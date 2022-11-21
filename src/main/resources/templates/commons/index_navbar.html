@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>spmis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.2/dist/pulse/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/Article-Clean.css?h=2a2c577c4c5d790275ee2075fbb1290f">
+    <link rel="stylesheet" href="../assets/css/Bootstrap-4-Calendar-No-Custom-Code.css?h=27b43cb3c28295c0253e528219a5bbc4">
+    <link rel="stylesheet" href="../assets/css/chatting.css?h=8dfaa6f8bfc8db01730acbb83fefc852">
+    <link rel="stylesheet" href="../assets/css/Login-Box-En-login-box-en.css?h=2f98490675fe81362a5b1bc6d43c93bc">
+    <link rel="stylesheet" href="../assets/css/Navbar-With-Button.css?h=befd8a398792e305b7ffd4a176b5b585">
+    <link rel="stylesheet" href="../assets/css/sidebar.css?h=ef67cc3593ec8a32e1dcc9f761b93dbd">
+</head>
+
+<body onload="notice();">
+    <nav class="navbar navbar-light navbar-expand-md shadow-sm" th:fragment="index_navbar">
+        <div class="container-fluid"><a class="navbar-brand" href="/">SPMIS</a><button data-bs-toggle="collapse" class="navbar-toggler collapsed mr-auto p-0" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-2">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/projectList" th:if="${session.mem != null}">&nbsp;내 프로젝트</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/publicProjectList">공개 프로젝트</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../projectList.html">HELP</a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                </ul>
+            </div>
+            <div class="me-2" th:if="${session.mem != null}"><a href="#"><span id="notification"></span></a></div>
+            <div th:if="${session.mem == null}"><a class="btn btn-primary" role="button" href="login">로그인</a><a class="btn btn-secondary me-2" role="button" href="join">회원가입</a></div>
+            <div name="${session.mem != null}">
+                <div class="dropstart d-none d-md-block navbar-right" id="usericon-desktop-2" th:if="${session.mem!=null}"><a aria-expanded="false" data-bs-toggle="dropdown" class="text-decoration-none text-reset"><img class="img-fluid rounded-circle" id="usericon-desktop-image-2" th:src="${session.mem.getProfile()}" width="40px" height="40px" alt="프로필이미지" src="https://i.pravatar.cc/200"></a>
+                    <div class="dropdown-menu">
+                        <h6 class="dropdown-header"><span th:text="${session.mem.getUser_name()}">닉네임</span></h6><a class="dropdown-item" href="mypage">마이페이지</a><a class="dropdown-item" href="message">쪽지</a><a class="dropdown-item" href="notice">알림 목록</a><a class="dropdown-item" href="logout">로그아웃</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bs-init.js?h=ee0b422936e6f2669b26f5f06a0aadf5"></script>
+    <script src="../assets/js/chatting.js?h=f99a3642ba4c6f898c052dc2bd3c7f47"></script>
+    <script src="../assets/js/modal.js?h=05e637bcd4aa40a1e959b190f51e4dec"></script>
+    <script src="../assets/js/notification.js?h=aba6554683fe79cf34104901d34a6046"></script>
+    <script src="../assets/js/sidebar.js?h=5698962290ef9fcb7ad2ffc60db8773a"></script>
+    <script src="../assets/js/taskcntchart.js?h=4b57bf467223ce24ad24242342f8358e"></script>
+    <script src="../assets/js/tinymce.js?h=48e4b34e223a725be43d90031ad9cc1f"></script>
+    <script src="../assets/js/upload-img.js?h=c87807bf1d9dc8415e710bba0be23a13"></script>
+</body>
+
+</html>

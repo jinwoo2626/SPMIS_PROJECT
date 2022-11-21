@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>spmis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/pulse/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css?h=1ebaba3465f39106375be623a0ebab45">
+    <link rel="stylesheet" href="assets/css/Article-Clean.css?h=2a2c577c4c5d790275ee2075fbb1290f">
+    <link rel="stylesheet" href="assets/css/Bootstrap-4-Calendar-No-Custom-Code.css?h=27b43cb3c28295c0253e528219a5bbc4">
+    <link rel="stylesheet" href="assets/css/chatting.css?h=8dfaa6f8bfc8db01730acbb83fefc852">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Box-En-login-box-en.css?h=2f98490675fe81362a5b1bc6d43c93bc">
+    <link rel="stylesheet" href="assets/css/Navbar-With-Button.css?h=befd8a398792e305b7ffd4a176b5b585">
+    <link rel="stylesheet" href="assets/css/sidebar.css?h=ef67cc3593ec8a32e1dcc9f761b93dbd">
+<script src="https://cdn.tiny.cloud/1/0mwjfs8tijzbt7jipwitlhmj1l6rg57ggo1uh82ty5ccpwnw/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+
+<body style="padding-left: 14rem;">
+    <div th:insert="~{commons/index_navbar::index_navbar}"></div>
+    <div th:insert="~{commons/nav_sidebar::nav_sidebar}"></div>
+    <div class="container mb-4 ms-2">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><span th:text="${project.getProject_name()}">프로젝트명</span></a></li>
+            <li class="breadcrumb-item"><a href="#"><span id="bc_item_title">페이지명</span><script>
+    let webTitle=document.title;
+    document.querySelector("#bc_item_title").textContent=webTitle;
+</script></a></li>
+        </ol>
+        <hr>
+    </div>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col align-self-center">
+                <h4 th:text="${project.getProject_id()}">subject명</h4>
+            </div>
+            <div class="col text-end align-self-center"><img class="rounded-circle" src="https://i.pravatar.cc/40"></div>
+        </div>
+    </div>
+    <main>
+        <div class="container mb-4">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mb-4" th:each="task : ${tasks}">
+                    <div class="card">
+                        <div class="card-header"><span class="fw-bold p-1" th:text="${task.getProject_status()}">채팅방인원</span>
+                            <form method="post" action="/deletekanban"><input class="form-control" type="hidden" name="kanban_id" th:value="${task.getKanban_id()}"><input class="form-control" type="hidden" name="project_id" th:value="${project.getProject_id()}"><input class="form-control" type="hidden" name="project_status" th:value="${task.getProject_status()}"></form>
+                        </div>
+                        <div class="card-body">
+                            <p class="d-xl-flex">채팅방인원</p>
+                        </div>
+                        <div class="card-footer"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 d-lg-flex flex-fill mb-4" th:each="task : ${tasks}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div id="chat-room">
+    <div class="message-box">
+        
+        <div class="message-group" data-date-str="2022년 10월 04일 화요일">
+            <div class="chat-message other">
+                <section><i class="fa fa-user"></i></section>
+                <span>test</span>
+                <div>test</div>
+            </div>
+        </div>
+    </div>
+    <div class="input-box">
+        <input type="text" id="text-input">
+        <div class="btn-plus">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </div>
+        <div class="btn-emo">
+            <i class="fa fa-smile-o" aria-hidden="true"></i>
+        </div>
+        <div class="btn-submit">
+            <span>전송</span>
+        </div>
+    </div>
+</div>
+</div>
+            </div>
+        </div>
+    </main><!-- Start: Footer Clean -->
+    <footer class="text-center bg-secondary bg-primary">
+        <div class="container bg-secondary">
+            <div class="col">
+                <ul class="list-inline my-2">
+                    <li class="list-inline-item">
+                        <div class="bs-icon-xs bs-icon-circle bs-icon-primary bg-secondary bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-github">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg></div>
+                    </li>
+                    <li class="list-inline-item">
+                        <div>
+                            <p class="text-white my-2">Copyright&nbsp;© 2022 SPMIS</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer><!-- End: Footer Clean -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-init.js?h=4c643c874b5981a6c1263e3cc0da5c12"></script>
+    <script src="assets/js/chatting.js?h=f99a3642ba4c6f898c052dc2bd3c7f47"></script>
+    <script src="assets/js/modal.js?h=05e637bcd4aa40a1e959b190f51e4dec"></script>
+    <script src="assets/js/sidebar.js?h=5698962290ef9fcb7ad2ffc60db8773a"></script>
+    <script src="assets/js/taskcntchart.js?h=4b57bf467223ce24ad24242342f8358e"></script>
+    <script src="assets/js/tinymce.js?h=48e4b34e223a725be43d90031ad9cc1f"></script>
+</body>
+
+</html>

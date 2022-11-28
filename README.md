@@ -95,3 +95,74 @@ https://github.com/dev-Rluan
 
 ## 배포 링크
 https://spmis.herokuapp.com/
+
+## 주요 기술 코드
+### 이메일 전송 및 인증
+- 의존성 추가하기  
+![image](https://user-images.githubusercontent.com/74890691/204205024-1aa90583-5212-49af-af4e-68f26f96d839.png)  
+
+- 설정정보 입력  
+![image](https://user-images.githubusercontent.com/74890691/204224850-ae2502da-022b-4c99-93ea-71a07781ba54.png)  
+이메일 발송을 위한 계정 정보를 설정과 host, port등의 정보들을 application.yml에 입력합니다.  
+password는 구글계정의 앱 비밀번호키를 사용합니다.  
+
+- Config 생성  
+![image](https://user-images.githubusercontent.com/74890691/204205899-2c558891-d9c3-4dce-83f5-8a7be9fc7e86.png)  
+application.yml파일 작성 후 EmailConfig.java파일을 생성합니다.  
+EmailConfig.java파일을 생성하였으면 yml파일에서 작성한 정보들을 불러오고 값을 세팅하는 코드를 작성합니다.  
+
+- Service 생성  
+![image](https://user-images.githubusercontent.com/74890691/204206238-0c261b89-d15c-4b39-b5d1-75620727e0c1.png)  
+EmailService에서는 수신자, 메일제목, 수신내용들을 설정하고, javaMailSender로 값을 전송합니다.  
+JavaMailSender에서 실제 메일이 발송됩니다.  
+
+### 차트
+- 차트 스크립트 작성  
+![image](https://user-images.githubusercontent.com/74890691/204207419-b5fa6e66-781e-4daa-9dd3-bb99f0f63374.png)  
+
+- 차트를 그릴 영역 설정  
+![image](https://user-images.githubusercontent.com/74890691/204207461-c822061a-ebdc-4d56-a979-594eee2c3d2d.png)  
+
+- 차트 설정  
+![image](https://user-images.githubusercontent.com/74890691/204207516-c0e3eadb-f417-49f5-8e6a-98aa8fb1cf91.png)  
+먼저 앞에서 설정한 Canvas를 불러옵니다.  
+js에서 차트의 유형(bar, bubble, line)을 선택할 수 있습니다.  
+data에서는 차트에서 나타낼 데이터값을 저장합니다.  
+Controller에서 model로 넘긴 값을 불러와서 차트 값(datasets)으로 설정합니다.  
+options에서는 차트모양을 꾸밀 수 있습니다.  
+
+### 문서변환모듈
+- 의존성 추가하기  
+![image](https://user-images.githubusercontent.com/74890691/204219328-8054492e-916c-4490-8939-aa4fa5e6e984.png)  
+pdf 라이브러리 itext와 pdf에서 사용할 차트라이브러리 jfreechart를 추가합니다.
+
+- Controller 작성  
+![image](https://user-images.githubusercontent.com/74890691/204220764-a9edff91-acbb-4508-9ec2-4a028b3b68ec.png)  
+
+![image](https://user-images.githubusercontent.com/74890691/204220561-361cb1a4-1b78-469e-8052-4216620bd64d.png)  
+마이페이지 활동내역출력하기에서 선택한 프로젝트, 활동값들을 @RequestParam으로 가져옵니다.  
+선택한값들과 세션값을 불러와서 ModelAndView에 값을 추가하고 CustomPdfViewService로 ModelAndView를 리턴합니다.  
+
+- Service 작성  
+![image](https://user-images.githubusercontent.com/74890691/204222346-2121ba04-0d76-4f53-b3c1-ffd03bf0ff87.png)  
+![image](https://user-images.githubusercontent.com/74890691/204222614-67c7a18a-e941-4ed0-8b4f-1e0ea82aa2bf.png)  
+
+documentinfo메서드에서 출력할 값들을 불러옵니다.  
+builder를 사용하여 저장한 값들을 반환합니다.  
+출력할 때 사용할 폰트를 지정합니다.  
+  
+![image](https://user-images.githubusercontent.com/74890691/204223223-b873a328-7c45-4a71-8880-d2a41b343338.png)  
+Chunk와 Paragraph를 이용하여 텍스트를 문서에 출력할 수 있습니다.  
+  
+![image](https://user-images.githubusercontent.com/74890691/204223511-74df4e29-46fb-4a0a-858a-813e714a5a95.png)  
+
+차트를 출력하기 위한 jfreechart 코드입니다.  
+먼저 데이터셋을 생성하고 데이터셋에 차트로 출력할 값들을 지정합니다. (value, rowKey, columnKey)형식으로 들어갑니다.  
+
+차트 객체를 선언하고 제목, 차트 형식, 라벨, 데이터셋들을 지정합니다.  
+
+![image](https://user-images.githubusercontent.com/74890691/204224377-c4053210-777d-434e-92c3-70015ee6eb87.png)  
+표를 출력하기 위한 코드입니다.
+PdfTable로 객체를 생성하고 PdfPCell로 셀을 생성하고 추가하는 형식으로 작성합니다.
+
+

@@ -93,8 +93,8 @@ https://github.com/dev-Rluan
 - 전체적인 디자인 
 - Heroku 무료 플랜 종료로인한 배포 및 DB 서비스 이전
 
-## 배포 링크
-https://spmis.herokuapp.com/
+## 배포 링크(heroku 무료 플랜 중지로 인한 배포 중지 - 다른 배포방식을 찾는중입니다.)
+~https://spmis.herokuapp.com/~
 
 ## 주요 기술 코드
 ### 이메일 전송 및 인증
